@@ -6,4 +6,4 @@ Projected recommended android architecture. Using Technologies are Retrofit, Gli
 
 # Attention!
 
-This project is still under development
+This project is still under development!
