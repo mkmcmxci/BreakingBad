@@ -71,7 +71,7 @@ public class ListFragment extends Fragment {
 
 
         mListViewModel = ViewModelProviders.of(this).get(ListViewModel.class);
-        mListViewModel.fetchFromAPI();
+        mListViewModel.refresh();
 
         mListViewModel.bbChar.observe(getViewLifecycleOwner(), new Observer<List<BCharacter>>() {
             @Override

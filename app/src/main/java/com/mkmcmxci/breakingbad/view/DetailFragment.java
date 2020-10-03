@@ -40,9 +40,6 @@ public class DetailFragment extends Fragment {
     View view;
     int id;
 
-
-
-
     @BindView(R.id.textView)
     TextView textView;
 

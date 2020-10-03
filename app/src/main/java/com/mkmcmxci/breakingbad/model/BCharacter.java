@@ -1,22 +1,36 @@
 package com.mkmcmxci.breakingbad.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class BCharacter {
 
+    @PrimaryKey(autoGenerate = true)
+    public int uuid;
+    @ColumnInfo(name = "char_id")
     @SerializedName("char_id")
     private int char_id;
     @SerializedName("name")
+    @ColumnInfo(name = "char_name")
     private String name;
     @SerializedName("birthday")
+    @ColumnInfo(name = "char_birthday")
     private String birthday;
     @SerializedName("img")
+    @ColumnInfo(name = "char_img")
     private String img;
     @SerializedName("status")
+    @ColumnInfo(name = "char_status")
     private String status;
     @SerializedName("nickname")
+    @ColumnInfo(name = "char_nickname")
     private String nickname;
     @SerializedName("portrayed")
+    @ColumnInfo(name = "char_portrayed")
     private String portrayed;
 
     public BCharacter() {
