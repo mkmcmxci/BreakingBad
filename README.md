@@ -1,7 +1,7 @@
 # Breaking Bad App
 Breaking Bad MVVM Architecture
 
-Projected recommended android architecture. Using Technologies are Retrofit, Glide, MVVM, LiveData, DataBinding, ButterKnife, rxJava.
+Projected recommended android architecture. Using Technologies are Retrofit, Glide, MVVM, Room, LiveData, DataBinding, ButterKnife, rxJava.
 
 
 # Attention!
