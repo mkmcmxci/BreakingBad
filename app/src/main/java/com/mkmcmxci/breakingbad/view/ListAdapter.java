@@ -23,13 +23,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CharViewHolder
 
     private ArrayList<BCharacter> charList;
 
-
     public ListAdapter(ArrayList<BCharacter> charList) {
         this.charList = charList;
     }
 
-
     public void updateCharList(List<BCharacter> newCharList) {
+
         charList.clear();
         charList.addAll(newCharList);
         notifyDataSetChanged();
@@ -39,9 +38,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CharViewHolder
     @NonNull
     @Override
     public CharViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         RowFragmentListBinding view = DataBindingUtil.inflate(inflater, R.layout.row_fragment_list, parent, false);
         return new CharViewHolder(view);
+
     }
 
     @Override
@@ -65,6 +66,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CharViewHolder
         Bundle bundle = new Bundle();
         bundle.putInt(GetArgs.CHAR_ID, newId);
         Navigation.findNavController(view).navigate(R.id.list_to_detail, bundle);
+
     }
 
     class CharViewHolder extends RecyclerView.ViewHolder {
@@ -72,9 +74,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CharViewHolder
         public RowFragmentListBinding itemBind;
 
         public CharViewHolder(@NonNull RowFragmentListBinding itemBind) {
+
             super(itemBind.getRoot());
 
             this.itemBind = itemBind;
         }
+
     }
+
 }

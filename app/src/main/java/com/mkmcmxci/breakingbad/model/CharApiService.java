@@ -16,6 +16,7 @@ public class CharApiService {
     private CharApi api;
 
     public CharApiService() {
+
         api = new Retrofit.Builder()
                 .baseUrl(GetApiUrl.getBase())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -28,11 +29,12 @@ public class CharApiService {
     public Single<List<BCharacter>> getChar() {
 
         return api.getChar();
+
     }
 
     public Single<List<BCharacter>> getCharById(int id) {
 
-
         return api.getCharById(id);
     }
+
 }

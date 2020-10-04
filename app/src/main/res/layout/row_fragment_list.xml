@@ -20,9 +20,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/row_fragment_list_row_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,8 +34,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/tab_backgroud"
-            android:onClick="@{listener::onCharClicked}"
             android:elevation="5dp"
+            android:onClick="@{listener::onCharClicked}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +59,7 @@
                 android:id="@+id/row_fragment_list_img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:contentDescription="char_img"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
@@ -77,8 +78,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
-                android:text="@{characters.name}"
+                android:text="@{characters.nickname}"
                 android:textAlignment="center"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/colorText"
                 android:textSize="20sp"
                 android:textStyle="bold"

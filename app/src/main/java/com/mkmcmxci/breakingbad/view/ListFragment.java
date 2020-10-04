@@ -1,7 +1,6 @@
 package com.mkmcmxci.breakingbad.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.mkmcmxci.breakingbad.R;
 import com.mkmcmxci.breakingbad.model.BCharacter;
 import com.mkmcmxci.breakingbad.viewmodel.ListViewModel;
@@ -32,12 +29,8 @@ public class ListFragment extends Fragment {
     private ListViewModel mListViewModel;
     private ListAdapter mListAdapter;
 
-    @BindView(R.id.fragment_list_recyclerview)
-    RecyclerView recView;
-    @BindView(R.id.fragment_list_progressBar)
-    ProgressBar pBar;
-
-
+    @BindView(R.id.fragment_list_recyclerview) RecyclerView mRecView;
+    @BindView(R.id.fragment_list_progressBar) ProgressBar pBar;
 
     @Nullable
     @Override
@@ -61,9 +54,8 @@ public class ListFragment extends Fragment {
     private void recInit() {
 
         mListAdapter = new ListAdapter(new ArrayList<>());
-        recView.setLayoutManager(new GridLayoutManager(getContext(),2));
-
-        recView.setAdapter(mListAdapter);
+        mRecView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        mRecView.setAdapter(mListAdapter);
 
     }
 
@@ -78,28 +70,32 @@ public class ListFragment extends Fragment {
             @Override
             public void onChanged(List<BCharacter> charList) {
 
-
-                recView.setVisibility(View.VISIBLE);
+                mRecView.setVisibility(View.VISIBLE);
                 mListAdapter.updateCharList(charList);
 
             }
+
         });
 
         mListViewModel.loading.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean != null && aBoolean instanceof Boolean) {
+
                     pBar.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
+
                     if (aBoolean) {
-                        recView.setVisibility(View.GONE);
+
+                        mRecView.setVisibility(View.GONE);
 
                     }
 
-
                 }
+
             }
+
         });
 
-
     }
+
 }

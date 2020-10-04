@@ -1,17 +1,13 @@
 package com.mkmcmxci.breakingbad.view;
 
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +16,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
 import com.mkmcmxci.breakingbad.R;
 import com.mkmcmxci.breakingbad.databinding.FragmentDetailBinding;
@@ -40,18 +35,23 @@ public class DetailFragment extends Fragment {
     View view;
     int id;
 
-    @BindView(R.id.textView)
-    TextView textView;
+    @BindView(R.id.fragment_detail_portrayed_title)
+    TextView portrayedTitle;
 
-    @BindView(R.id.textView2)
-    TextView textView2;
+    @BindView(R.id.fragment_detail_nickname_title)
+    TextView nicknameTitle;
 
-    @BindView(R.id.textView3)
-    TextView textView3;
+    @BindView(R.id.fragment_detail_status_title)
+    TextView statusTitle;
 
-    @BindView(R.id.textView4)
-    TextView textView4;
+    @BindView(R.id.fragment_detail_birthday_title)
+    TextView birthdayTitle;
 
+    @BindView(R.id.fragment_detail_constraint_layout_two)
+    ConstraintLayout constraintLayout;
+
+    @BindView(R.id.fragment_detail_go_quotes)
+    TextView goQuotes;
 
     @BindView(R.id.fragment_detail_progresBar)
     ProgressBar pBar;
@@ -66,7 +66,6 @@ public class DetailFragment extends Fragment {
         view = binding.getRoot();
 
         ButterKnife.bind(this, view);
-
 
         setHasOptionsMenu(true);
 
@@ -83,12 +82,11 @@ public class DetailFragment extends Fragment {
 
     }
 
-
-
     private void vModelInit() {
 
         mListViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
         mListViewModel.fetch(id, null);
+
         mListViewModel.singleChar.observe(getViewLifecycleOwner(), new Observer<BCharacter>() {
             @Override
             public void onChanged(BCharacter bCharacter) {
@@ -96,35 +94,43 @@ public class DetailFragment extends Fragment {
                 binding.setCharacters(bCharacter);
 
             }
+
         });
 
         mListViewModel.loading.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+
             @Override
             public void onChanged(Boolean aBoolean) {
 
                 if (aBoolean != null && aBoolean instanceof Boolean) {
 
-                    textView.setVisibility(View.VISIBLE);
-                    textView2.setVisibility(View.VISIBLE);
-                    textView3.setVisibility(View.VISIBLE);
-                    textView4.setVisibility(View.VISIBLE);
+                    portrayedTitle.setVisibility(View.VISIBLE);
+                    nicknameTitle.setVisibility(View.VISIBLE);
+                    statusTitle.setVisibility(View.VISIBLE);
+                    birthdayTitle.setVisibility(View.VISIBLE);
+                    constraintLayout.setVisibility(View.VISIBLE);
+                    goQuotes.setVisibility(View.VISIBLE);
 
                     pBar.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
 
-
                 }
-            }
-        });
 
+            }
+
+        });
 
 
     }
 
-    private void isLayoutVisible(){
-        textView.setVisibility(View.GONE);
-        textView2.setVisibility(View.GONE);
-        textView3.setVisibility(View.GONE);
-        textView4.setVisibility(View.GONE);
+    private void isLayoutVisible() {
+
+        portrayedTitle.setVisibility(View.GONE);
+        nicknameTitle.setVisibility(View.GONE);
+        statusTitle.setVisibility(View.GONE);
+        birthdayTitle.setVisibility(View.GONE);
+        constraintLayout.setVisibility(View.GONE);
+        goQuotes.setVisibility(View.GONE);
+
         pBar.setVisibility(View.VISIBLE);
 
     }
@@ -134,4 +140,5 @@ public class DetailFragment extends Fragment {
         id = getArguments().getInt(GetArgs.CHAR_ID);
 
     }
+
 }

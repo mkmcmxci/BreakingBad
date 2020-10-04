@@ -10,7 +10,6 @@ import android.os.Bundle;
 
 import com.mkmcmxci.breakingbad.R;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
@@ -27,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+
         return NavigationUI.navigateUp(navController, (DrawerLayout) null);
+
     }
 
 }

@@ -1,6 +1,5 @@
 package com.mkmcmxci.breakingbad.model;
 
-import android.util.Log;
 
 import java.util.List;
 
@@ -15,6 +14,5 @@ public interface CharApi {
 
     @GET("characters/{id}")
     Single<List<BCharacter>> getCharById(@Path("id") int id);
-
 
 }

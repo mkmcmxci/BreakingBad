@@ -14,6 +14,7 @@ public class QuoteApiService {
     private QuoteApi api;
 
     public QuoteApiService() {
+
         api = new Retrofit.Builder()
                 .baseUrl(GetApiUrl.getBase())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -26,5 +27,7 @@ public class QuoteApiService {
     public Single<List<Quote>> getQuoteByChar(String name) {
 
         return api.getQuoteByChar(name);
+
     }
+
 }

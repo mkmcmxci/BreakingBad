@@ -11,7 +11,6 @@ public class Quote {
     @SerializedName("author")
     private String author;
 
-
     public Quote() {
     }
 
