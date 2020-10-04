@@ -7,9 +7,12 @@ import androidx.lifecycle.ViewModel;
 
 import com.mkmcmxci.breakingbad.model.BCharacter;
 import com.mkmcmxci.breakingbad.model.CharApiService;
+import com.mkmcmxci.breakingbad.model.Quote;
+import com.mkmcmxci.breakingbad.model.QuoteApiService;
 
 import java.util.List;
 
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
@@ -19,22 +22,25 @@ public class DetailViewModel extends ViewModel {
 
     public MutableLiveData<BCharacter> singleChar = new MutableLiveData<>();
 
-    public MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    public MutableLiveData<List<Quote>> quoteList = new MutableLiveData<>();
 
+    public MutableLiveData<Boolean> loading = new MutableLiveData<>();
 
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
     private CharApiService bbService = new CharApiService();
 
-    public void fetch(int id) {
+    private QuoteApiService quoteService = new QuoteApiService();
 
-        fetchFromAPI(id);
+    public void fetch(int id, String name) {
+
+        fetchFromAPI(id, name);
 
     }
 
-    private void fetchFromAPI(int id) {
-        disposable.add(
+    private void fetchFromAPI(int id, String name) {
+        disposable.addAll(
                 bbService.getCharById(id)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -45,7 +51,6 @@ public class DetailViewModel extends ViewModel {
                                 loading.setValue(false);
                                 singleChar.setValue(bCharacters.get(0));
 
-
                             }
 
                             @Override
@@ -53,7 +58,24 @@ public class DetailViewModel extends ViewModel {
 
                             }
 
-                        }));
+                        }),
+
+                quoteService.getQuoteByChar(name).subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<Quote>>() {
+                    @Override
+                    public void onSuccess(List<Quote> quotes) {
+
+                        quoteList.setValue(quotes);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                })
+
+        );
 
     }
 

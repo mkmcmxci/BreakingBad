@@ -15,4 +15,6 @@ public interface CharApi {
 
     @GET("characters/{id}")
     Single<List<BCharacter>> getCharById(@Path("id") int id);
+
+
 }

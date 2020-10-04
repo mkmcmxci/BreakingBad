@@ -88,7 +88,7 @@ public class DetailFragment extends Fragment {
     private void vModelInit() {
 
         mListViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
-        mListViewModel.fetch(id);
+        mListViewModel.fetch(id, null);
         mListViewModel.singleChar.observe(getViewLifecycleOwner(), new Observer<BCharacter>() {
             @Override
             public void onChanged(BCharacter bCharacter) {

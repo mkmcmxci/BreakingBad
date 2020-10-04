@@ -61,7 +61,8 @@ public class ListFragment extends Fragment {
     private void recInit() {
 
         mListAdapter = new ListAdapter(new ArrayList<>());
-        recView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recView.setLayoutManager(new GridLayoutManager(getContext(),2));
+
         recView.setAdapter(mListAdapter);
 
     }

@@ -81,8 +81,6 @@ public class ListViewModel extends AndroidViewModel {
                             public void onSuccess(List<BCharacter> charList) {
                                 task = new InsertCharTask();
                                 task.execute(charList);
-                                Toast.makeText(getApplication(), "api", Toast.LENGTH_SHORT).show();
-
 
                             }
 
@@ -172,7 +170,6 @@ public class ListViewModel extends AndroidViewModel {
         @Override
         protected void onPostExecute(List<BCharacter> bCharacters) {
             retrieveChars(bCharacters);
-            Toast.makeText(getApplication(), "database", Toast.LENGTH_SHORT).show();
 
         }
     }

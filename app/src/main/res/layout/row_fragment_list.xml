@@ -20,78 +20,76 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/row_fragment_list_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{listener::onCharClicked}"
+
         >
 
-
-        <TextView
-            android:id="@+id/char_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(characters.char_id)}"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <ImageView
-            android:id="@+id/row_fragment_list_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:imageURL="@{characters.img}"
-            android:padding="10dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/list_selector_background"
-            />
-
-        <TextView
-            android:id="@+id/row_fragment_list_name"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row_fragment_list_row"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{characters.name}"
-            android:maxLines="1"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/row_fragment_list_img"
-            app:layout_constraintStart_toEndOf="@+id/row_fragment_list_img"
-            app:layout_constraintTop_toTopOf="@+id/row_fragment_list_img"
-            />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/tab_backgroud"
+            android:onClick="@{listener::onCharClicked}"
+            android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/row_fragment_list_img"
-            ></LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
-        <ImageView
-            android:id="@+id/row_fragment_list_arrow_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/row_fragment_list_img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/row_fragment_list_img"
-            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
-            />
+
+            <TextView
+                android:id="@+id/char_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(characters.char_id)}"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/row_fragment_list_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:imageURL="@{characters.img}"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/list_selector_background"
+                />
+
+            <TextView
+                android:id="@+id/row_fragment_list_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:text="@{characters.name}"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row_fragment_list_img"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
