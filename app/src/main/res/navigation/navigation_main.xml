@@ -34,5 +34,27 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             />
+        <action
+            android:id="@+id/detail_to_quote"
+            app:destination="@id/quoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteFragment"
+        android:name="com.mkmcmxci.breakingbad.view.QuoteFragment"
+        android:label="Quotes"
+        >
+        <action
+            android:id="@+id/quote_to_detail"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            />
     </fragment>
 </navigation>

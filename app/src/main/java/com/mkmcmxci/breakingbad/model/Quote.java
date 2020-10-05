@@ -10,14 +10,17 @@ public class Quote {
     private String quote;
     @SerializedName("author")
     private String author;
+    @SerializedName("series")
+    private String series;
 
     public Quote() {
     }
 
-    public Quote(int quote_id, String quote, String author) {
+    public Quote(int quote_id, String quote, String author, String series) {
         this.quote_id = quote_id;
         this.quote = quote;
         this.author = author;
+        this.series = series;
     }
 
     public int getQuote_id() {
@@ -42,5 +45,13 @@ public class Quote {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
     }
 }

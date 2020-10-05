@@ -1,10 +1,8 @@
 package com.mkmcmxci.breakingbad.util;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -15,6 +13,7 @@ public class ImageGetter {
 
         Glide.with(view.getContext())
                 .setDefaultRequestOptions(new RequestOptions().circleCrop())
+
                 .load(url)
                 .into(view);
 

@@ -22,24 +22,20 @@ public class DetailViewModel extends ViewModel {
 
     public MutableLiveData<BCharacter> singleChar = new MutableLiveData<>();
 
-    public MutableLiveData<List<Quote>> quoteList = new MutableLiveData<>();
-
     public MutableLiveData<Boolean> loading = new MutableLiveData<>();
-
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
     private CharApiService bbService = new CharApiService();
 
-    private QuoteApiService quoteService = new QuoteApiService();
 
-    public void fetch(int id, String name) {
+    public void fetch(int id) {
 
-        fetchFromAPI(id, name);
+        fetchFromAPI(id);
 
     }
 
-    private void fetchFromAPI(int id, String name) {
+    private void fetchFromAPI(int id) {
         disposable.addAll(
                 bbService.getCharById(id)
                         .subscribeOn(Schedulers.newThread())
@@ -55,25 +51,12 @@ public class DetailViewModel extends ViewModel {
 
                             @Override
                             public void onError(Throwable e) {
+                                e.printStackTrace();
 
                             }
 
-                        }),
+                        })
 
-                quoteService.getQuoteByChar(name).subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSingleObserver<List<Quote>>() {
-                    @Override
-                    public void onSuccess(List<Quote> quotes) {
-
-                        quoteList.setValue(quotes);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                })
 
         );
 

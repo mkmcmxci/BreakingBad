@@ -62,8 +62,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.CharViewHolder
     public void onCharClicked(View view) {
 
         String id = ((TextView) view.findViewById(R.id.char_id)).getText().toString();
+        String name = ((TextView) view.findViewById(R.id.char_name)).getText().toString();
+
         int newId = Integer.parseInt(id);
         Bundle bundle = new Bundle();
+        bundle.putString(GetArgs.CHAR_NAME, name);
         bundle.putInt(GetArgs.CHAR_ID, newId);
         Navigation.findNavController(view).navigate(R.id.list_to_detail, bundle);
 

@@ -13,6 +13,11 @@
             type="com.mkmcmxci.breakingbad.model.BCharacter"
             />
 
+        <variable
+            name="listener"
+            type="com.mkmcmxci.breakingbad.view.CharClickListener"
+            />
+
     </data>
 
 
@@ -212,6 +217,8 @@
                 android:elevation="5dp"
                 android:padding="10dp"
                 android:text="Go Quotes"
+                android:clickable="true"
+                android:onClick="@{listener::onCharClicked}"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/colorText"

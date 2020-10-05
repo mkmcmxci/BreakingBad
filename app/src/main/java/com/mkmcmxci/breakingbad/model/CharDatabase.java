@@ -15,7 +15,7 @@ public abstract class CharDatabase extends RoomDatabase {
     public static CharDatabase getInstance(Context context) {
 
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), CharDatabase.class, "chardatabase")
+            instance = Room.databaseBuilder(context.getApplicationContext(), CharDatabase.class, "char_database")
                     .build();
 
         }

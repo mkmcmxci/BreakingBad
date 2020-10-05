@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +17,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 import com.mkmcmxci.breakingbad.R;
 import com.mkmcmxci.breakingbad.databinding.FragmentDetailBinding;
+import com.mkmcmxci.breakingbad.databinding.RowFragmentListBinding;
 import com.mkmcmxci.breakingbad.model.BCharacter;
 import com.mkmcmxci.breakingbad.util.GetArgs;
 import com.mkmcmxci.breakingbad.viewmodel.DetailViewModel;
@@ -27,13 +30,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment implements CharClickListener {
 
 
     FragmentDetailBinding binding;
     private DetailViewModel mListViewModel;
     View view;
     int id;
+    String name;
 
     @BindView(R.id.fragment_detail_portrayed_title)
     TextView portrayedTitle;
@@ -63,6 +67,8 @@ public class DetailFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
 
+        binding.setListener(this);
+
         view = binding.getRoot();
 
         ButterKnife.bind(this, view);
@@ -80,40 +86,28 @@ public class DetailFragment extends Fragment {
         isLayoutVisible();
         vModelInit();
 
+
     }
 
     private void vModelInit() {
 
         mListViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
-        mListViewModel.fetch(id, null);
+        mListViewModel.fetch(id);
 
-        mListViewModel.singleChar.observe(getViewLifecycleOwner(), new Observer<BCharacter>() {
-            @Override
-            public void onChanged(BCharacter bCharacter) {
+        mListViewModel.singleChar.observe(getViewLifecycleOwner(), bCharacter -> binding.setCharacters(bCharacter));
 
-                binding.setCharacters(bCharacter);
+        mListViewModel.loading.observe(getViewLifecycleOwner(), aBoolean -> {
 
-            }
+            if (aBoolean != null && aBoolean instanceof Boolean) {
 
-        });
+                portrayedTitle.setVisibility(View.VISIBLE);
+                nicknameTitle.setVisibility(View.VISIBLE);
+                statusTitle.setVisibility(View.VISIBLE);
+                birthdayTitle.setVisibility(View.VISIBLE);
+                constraintLayout.setVisibility(View.VISIBLE);
+                goQuotes.setVisibility(View.VISIBLE);
 
-        mListViewModel.loading.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-
-            @Override
-            public void onChanged(Boolean aBoolean) {
-
-                if (aBoolean != null && aBoolean instanceof Boolean) {
-
-                    portrayedTitle.setVisibility(View.VISIBLE);
-                    nicknameTitle.setVisibility(View.VISIBLE);
-                    statusTitle.setVisibility(View.VISIBLE);
-                    birthdayTitle.setVisibility(View.VISIBLE);
-                    constraintLayout.setVisibility(View.VISIBLE);
-                    goQuotes.setVisibility(View.VISIBLE);
-
-                    pBar.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
-
-                }
+                pBar.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
 
             }
 
@@ -130,7 +124,6 @@ public class DetailFragment extends Fragment {
         birthdayTitle.setVisibility(View.GONE);
         constraintLayout.setVisibility(View.GONE);
         goQuotes.setVisibility(View.GONE);
-
         pBar.setVisibility(View.VISIBLE);
 
     }
@@ -138,7 +131,17 @@ public class DetailFragment extends Fragment {
     private void getArgs() {
 
         id = getArguments().getInt(GetArgs.CHAR_ID);
+        name = getArguments().getString(GetArgs.CHAR_NAME);
 
     }
 
+
+    @Override
+    public void onCharClicked(View view) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(GetArgs.CHAR_NAME, name);
+        Navigation.findNavController(view).navigate(R.id.detail_to_quote, bundle);
+
+    }
 }
